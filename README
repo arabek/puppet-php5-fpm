@@ -1,5 +1,5 @@
 # php5-fpm module #
-Author	: Benoit CATTIE <puppet@benoit.cattie.net>, Lars Fronius <lars@jimdo.com>
+Author	: Wojciech Arabczyk <wojciech@arabczyk.name>, Benoit CATTIE <puppet@benoit.cattie.net>, Lars Fronius <lars@jimdo.com>
 Version	: 0.2
 Licence	: GPLv3
 
@@ -36,12 +36,10 @@ Define a php-fpm config snippet. Places all config snippets into
 Parameters :
 	* ensure: typically set to "present" or "absent".  Defaults to "present"
 	* content: set the content of the config snipppet.  Defaults to 'template("php5-fpm/pool.d/$name.conf.erb")'
-	* order: specifies the load order for this config snippet.  Defaults to "500"
 
 Sample Usage:
  	php5-fpm::config{ "global":
 		ensure	=> present,
-		order	=> "000",
 	}
 	php5-fpm::config{ "www-example-pool":
 		ensure	=> present,

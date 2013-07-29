@@ -8,13 +8,10 @@
 #       Defaults to "present"
 #    * content: set the content of the config snipppet.
 #       Defaults to    'template("php5-fpm/pool.d/$name.conf.erb")'
-#    * order: specifies the load order for this config snippet.
-#       Defaults to "500"
 #
 # Sample Usage:
 #    php5-fpm::config { "global":
 #        ensure => present,
-#        order  => '000',
 #    }
 #    php5-fpm::config { "www-example-pool":
 #        ensure     => present,
@@ -22,13 +19,13 @@
 #    }
 #
 
-define php5-fpm::config ( $ensure = 'present', $content = '', $order='500') {
+define php5-fpm::config ( $ensure = 'present', $content = '') {
     $real_content = $content ? {
         ''          => template("php5-fpm/pool.d/${name}.conf.erb"),
         default     => $content,
     }
 
-    file { "/etc/php5/fpm/pool.d/${order}-${name}.conf":
+    file { "/etc/php5/fpm/pool.d/${name}.conf":
         ensure  => $ensure,
         content => $real_content,
         mode    => '0644',
